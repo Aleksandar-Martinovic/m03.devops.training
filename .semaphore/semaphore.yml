@@ -33,10 +33,11 @@ blocks:
       - 1-Signing
     task:
       jobs:
-        - name: "\U0001F4E6 Deploy to Production"
+        - name: Creating sbom
           commands:
             - checkout
             - cd 2-sbom
+            - apt install python3.12-venv
             - python3 -m venv venv
             - source venv/bin/activate
             - pip install cyclonedx-bom
