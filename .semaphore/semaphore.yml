@@ -23,6 +23,9 @@ blocks:
             - gpg --import /root/private.key
             - gpg --output artifact.txt.sig --detach-sign artifact.txt
             - gpg --verify artifact.txt.sig artifact.txt
+      secrets:
+        - name: private_key-Aleksandar
+        - name: public_key-Aleksandar
   - name: "\U0001F680 Deploy"
     dependencies:
       - 1-Signing
