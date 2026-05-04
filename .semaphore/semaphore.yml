@@ -28,14 +28,16 @@ blocks:
       secrets:
         - name: private_key-Aleksandar
         - name: public_key-Aleksandar
-  - name: "\U0001F680 Deploy"
+  - name: "\U0001F680 2-sbom"
     dependencies:
       - 1-Signing
     task:
       jobs:
         - name: "\U0001F4E6 Deploy to Production"
           commands:
-            - echo "Building application..."
-            - echo "Running security checks..."
-            - echo "Deploying to production..."
-            - echo "Deployment completed successfully!"
+            - checkout
+            - cd 2-sbom
+            - python3 -m venv venv
+            - source venv/bin/activate
+            - pip install cyclonedx-bom
+            - cyclonedx-py requirements -o bom.json
